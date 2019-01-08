@@ -17,6 +17,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/user/getUser', 'UserController@getUser')->name('getUser');
+Route::post('/user/updateUser', 'UserController@updateUser')->name('updateUser');
+
 Route::get('/inputTime/{year}/{month}/{date}', 'InputTimeController@index')
     ->name('inputTime')
     ->where(['year' => '[0-9]{4}',
