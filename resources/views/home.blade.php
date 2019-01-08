@@ -12,10 +12,11 @@
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
+                        ログイン中
                     @endif
-
-                    You are logged in!
                     <div id="calendarTable"></div>
+                    ca
+                    <div id="updateAccountModal"></div>
                 </div>
             </div>
         </div>

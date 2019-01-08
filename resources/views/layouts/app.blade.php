@@ -53,10 +53,11 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
+                                    <div id="updateAccountModal" val ="update"></div>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            ログアウト
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
