@@ -30,6 +30,14 @@ export default class UpdateAccountModal extends Component {
       });
   }
 
+  // バリデーション
+  getValidationState() {
+    const length = this.state.value.length;
+    if (length > 0) return 'success';
+    else if (length == 0) return 'error';
+    return null;
+  }
+
   handleClose() {
     this.setState({ show: false });
   }
@@ -44,9 +52,6 @@ export default class UpdateAccountModal extends Component {
 
   handleUpdate(e) {
     const data = { name : this.state.value};
-    // axios.post('/user/updateUser', data).then(response => {
-    // });
-
     axios.post('/user/updateUser',data)
       .then((response) => {
         console.log(response)
@@ -75,18 +80,20 @@ export default class UpdateAccountModal extends Component {
             <h4>ニックネーム</h4>
             <form>
               <FormGroup
-                controlId="formBasicText">
+                controlId="formBasicText"
+                validationState={this.getValidationState()}
+                >
                 <FormControl
                   type="text"
                   value={this.state.value}
-                  placeholder="Enter text"
+                  placeholder="入力してください"
                   onChange={this.handleChange}
                 />
               </FormGroup>
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button bsStyle="primary" onClick={this.handleUpdate}>変更</Button>
+            <Button bsStyle="primary" onClick={this.handleUpdate} disabled={this.state.value.length == 0} >変更</Button>
             <Button onClick={this.handleClose}>閉じる</Button>
           </Modal.Footer>
         </Modal>
@@ -95,7 +102,18 @@ export default class UpdateAccountModal extends Component {
   }
 }
 
+var HeaderNavi = React.createClass({
+  render: function() {
+    return <div>@include('welcome')</div>
+  }
+});
+
 if (document.getElementById('updateAccountModal')) {
   ReactDOM.render(<UpdateAccountModal />, 
   document.getElementById('updateAccountModal'));
+}
+
+if (document.getElementById('testinc')) {
+  ReactDOM.render(<HeaderNavi />, 
+  document.getElementById('testinc'));
 }
